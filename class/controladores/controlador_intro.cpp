@@ -3,7 +3,7 @@
 
 Controlador_intro::Controlador_intro(Director_estados &DI, DLibV::Pantalla& pantalla)
 	:Controlador_base(DI),
-	rep_txt(pantalla.acc_renderer(), DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), "Hola!")
+	rep_txt(DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), "Hola!")
 {
 	rep_txt.establecer_posicion(16, 400);
 }
