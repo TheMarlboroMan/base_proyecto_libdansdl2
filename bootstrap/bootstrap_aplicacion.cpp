@@ -22,7 +22,7 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	*/
 
 	//Controladores e interfaces.
-	Controlador_intro C_I(DI, loc);
+	Controlador_intro C_I(DI, loc, f);
 	Controlador_ejemplo C_E(DI);
 
 	Interface_controlador * IC=&C_I;

@@ -11,7 +11,7 @@ class Controlador_intro:public Controlador_base
 	//Interface pública.
 	public:
 	
-	Controlador_intro(Director_estados &DI, const Localizador& loc);
+	Controlador_intro(Director_estados &DI, const Localizador& loc, const DLibV::Fuente_TTF& fuente);
 	~Controlador_intro();
 
 	virtual void preloop(Input_base& input, float delta);
@@ -27,6 +27,7 @@ class Controlador_intro:public Controlador_base
 	const Localizador&				loc;
 	int						texto_actual;
 	DLibV::Representacion_texto_auto_estatica 	rep_txt;
+	DLibV::Representacion_TTF 			rep_ttf;
 
 	///////////////
 	//Métodos internos.
