@@ -1,9 +1,11 @@
 #include "controlador_intro.h"
 #include "../app/recursos.h"
 
-Controlador_intro::Controlador_intro(Director_estados &DI, DLibV::Pantalla& pantalla)
+Controlador_intro::Controlador_intro(Director_estados &DI, const Localizador& loc)
 	:Controlador_base(DI),
-	rep_txt(DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), "Hola!")
+	loc(loc),
+	texto_actual(uno),
+	rep_txt(DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), loc.obtener(texto_actual))
 {
 	rep_txt.establecer_posicion(16, 400);
 }
@@ -30,7 +32,13 @@ void Controlador_intro::loop(Input_base& input, float delta)
 	}
 	else
 	{
-		if(input.es_input_down(Input::I_ESPACIO))
+		if(input.es_input_down(Input::I_ENTER))
+		{
+			++texto_actual;
+			if(texto_actual==fin) texto_actual=uno;
+			rep_txt.asignar(loc.obtener(texto_actual));
+		}
+		else if(input.es_input_down(Input::I_ESPACIO))
 		{
 			solicitar_cambio_estado(Director_estados::t_estados::EJEMPLO);
 		}

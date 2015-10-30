@@ -12,8 +12,17 @@ void App::loop_aplicacion(Kernel_app& kernel)
 
 	DLibV::Fuente_TTF f("data/fuentes/sample.ttf", 10);
 
+
+	const int id_idioma=0;
+	Localizador loc("data/localizacion/textos", id_idioma);
+	
+	/** También podemos ser más explícitos para declarar el localizador.
+	* Localizador loc("data/localizacion/textos");
+	* loc.inicializar(id_idioma);	
+	*/
+
 	//Controladores e interfaces.
-	Controlador_intro C_I(DI, kernel.acc_pantalla());
+	Controlador_intro C_I(DI, loc);
 	Controlador_ejemplo C_E(DI);
 
 	Interface_controlador * IC=&C_I;
