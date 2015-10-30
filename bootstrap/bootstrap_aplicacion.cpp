@@ -10,6 +10,8 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	//Declaraciones de herramientas externas.
 	Director_estados DI;
 
+	DLibV::Fuente_TTF f("data/fuentes/sample.ttf", 10);
+
 	//Controladores e interfaces.
 	Controlador_intro C_I(DI, kernel.acc_pantalla());
 	Controlador_ejemplo C_E(DI);
