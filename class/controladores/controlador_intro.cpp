@@ -5,7 +5,7 @@ Controlador_intro::Controlador_intro(Director_estados &DI, const Localizador& lo
 	:Controlador_base(DI),
 	loc(loc),
 	texto_actual(uno),
-	rep_txt(DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), loc.obtener(texto_actual))
+	rep_txt(DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), loc.obtener(texto_actual)),
 	rep_ttf(fuente, 255, 255, 255, 255, loc.obtener(texto_actual))
 {
 	rep_txt.establecer_posicion(16, 400);
@@ -51,7 +51,7 @@ void Controlador_intro::loop(Input_base& input, float delta)
 
 void Controlador_intro::dibujar(DLibV::Pantalla& pantalla)
 {
-	pantalla.limpiar(0, 0, 0, 255);
+	pantalla.limpiar(128, 128, 128, 255);
 	rep_txt.volcar(pantalla);
 	rep_ttf.volcar(pantalla);
 }

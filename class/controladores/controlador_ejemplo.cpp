@@ -3,10 +3,12 @@
 Controlador_ejemplo::Controlador_ejemplo(Director_estados &DI)
 	:Controlador_base(DI), actual(0,0,0), deseado(0,0,0)
 {
+
 }
 
 Controlador_ejemplo::~Controlador_ejemplo()
 {
+
 }
 
 void Controlador_ejemplo::preloop(Input_base& input, float delta)
@@ -51,7 +53,7 @@ void Controlador_ejemplo::dibujar(DLibV::Pantalla& pantalla)
 
 void Controlador_ejemplo::escoger_nuevo_color()
 {
-	Generador_int G(0, 255);
+	Herramientas_proyecto::Generador_int G(0, 255);
 	deseado.r=G();
 	deseado.g=G();
 	deseado.b=G();

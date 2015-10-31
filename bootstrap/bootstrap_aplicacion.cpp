@@ -10,7 +10,7 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	//Declaraciones de herramientas externas.
 	Director_estados DI;
 
-	DLibV::Fuente_TTF f("data/fuentes/sample.ttf", 10);
+	DLibV::Fuente_TTF f("data/fuentes/sample.ttf", 16);
 
 
 	const int id_idioma=0;

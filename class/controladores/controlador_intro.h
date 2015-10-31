@@ -4,6 +4,7 @@
 #include "controlador_base.h"
 #include "../framework/derivada/localizador.h"
 #include <string>
+#include <video/representacion/representacion_grafica/representacion_ttf/representacion_ttf.h>
 
 class Controlador_intro:public Controlador_base
 {
@@ -27,7 +28,7 @@ class Controlador_intro:public Controlador_base
 	const Localizador&				loc;
 	int						texto_actual;
 	DLibV::Representacion_texto_auto_estatica 	rep_txt;
-	DLibV::Representacion_TTF 			rep_ttf;
+	DLibV::Representacion_TTF_estatica		rep_ttf;
 
 	///////////////
 	//Métodos internos.
