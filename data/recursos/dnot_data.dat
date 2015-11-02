@@ -1,0 +1,13 @@
+prueba_datos:
+{
+	nombre:"Proyecto de prueba",
+	config_video:
+	{
+		medidas:[400, 500]
+	}
+},
+
+string_prueba:"Hola",
+bool_prueba:false,
+int_prueba:12,
+float_prueba:1.0
