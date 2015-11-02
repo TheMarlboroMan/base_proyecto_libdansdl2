@@ -4,6 +4,15 @@ prueba_datos:
 	config_video:
 	{
 		medidas:[400, 500]
+	},
+	complejo:
+	{
+		valor_texto:"Valor textual []{}",
+		coleccion:[
+			{val:"Val", otro:"Otro"},
+			{val:"Val2", otro:"Otro2", cosa:"Cosa"},
+			33,
+			"¿cómo estás?"]
 	}
 },
 

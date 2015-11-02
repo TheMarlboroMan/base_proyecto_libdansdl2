@@ -25,7 +25,9 @@ void App::loop_aplicacion(Kernel_app& kernel)
 
 	//Un parser de Dnot, que es como JSON, pero en chungo... Vamos a 
 	//ver cómo se inicializa y cómo se usa... Un fallo en uso dará como
-	//resultado una excepción runtime_error.
+	//resultado una excepción runtime_error. Por lo demás, es bastante
+	//potente (no sé si será lento o no... Ahora mismo no me importa).
+	//Algunas de las features...
 
 	const auto tok=Herramientas_proyecto::parsear_dnot("data/recursos/dnot_data.dat");
 	auto& p=kernel.acc_pantalla();
@@ -33,15 +35,17 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	//Autoconversión a string...	
 	p.establecer_titulo(tok["prueba_datos"]["nombre"]);
 
-	//Y autoconversión a enteros!.
+	//Y autoconversión a enteros...
 	int w=tok["prueba_datos"]["config_video"]["medidas"][0], 
 		h=tok["prueba_datos"]["config_video"]["medidas"][1];
 
 	p.inicializar(w, h);
 	p.establecer_medidas_logicas(w, h);
 	
-	//Puede leer cadenas, enteros, floats y bools. Aún no
-	//podemos hacar la comparación directamente sin hacer cast.
+	//Puede leer cadenas, enteros, floats y bools. Aún no tenemos los
+	//operadores de comparación con const_chars, bools, enteros, floats y
+	//strings por lo cual no podemos hacer las comparaciones directamente
+	//sin guardar antes el valor o poner un cast.
 	std::string tks=tok["string_prueba"];
 	bool tkb=tok["bool_prueba"];
 	int tki=tok["int_prueba"];
@@ -51,6 +55,26 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	{
 		throw std::runtime_error("Fichero de datos corrupto");
 	}
+
+	//Hay overload de ostreams... 
+	std::cout<<tok["prueba_datos"]["complejo"]["valor_texto"]<<std::endl;
+
+	//Listas mezclando tipos.
+	std::cout<<tok["prueba_datos"]["complejo"]["coleccion"][0]<<" -> "<<
+		tok["prueba_datos"]["complejo"]["coleccion"][0]["val"]<<", "<<
+		tok["prueba_datos"]["complejo"]["coleccion"][1]["val"]<<", "<<
+		tok["prueba_datos"]["complejo"]["coleccion"][2]<<std::endl;
+
+	//No creo que pueda declarar una forma de que se entienda que el
+	//valor es un string...
+	//std::string cosa("Hola... ");
+	//cosa+=tok["prueba_datos"]["complejo"]["coleccion"][3];
+	//std::cout<<cosa<<std::endl;
+
+	//Pero podemos hacer esto...
+	std::string cosa("Hola... ");
+	cosa+=tok["prueba_datos"]["complejo"]["coleccion"][3].acc_string();
+	std::cout<<cosa<<std::endl;	
 
 	//Controladores e interfaces.
 	Director_estados DI;
