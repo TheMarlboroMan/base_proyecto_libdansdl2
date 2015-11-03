@@ -12,7 +12,7 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	//Declaraciones de herramientas externas.
 
 	//Así declaramos una fuente ttf externa...
-	DLibV::Fuente_TTF f("data/fuentes/sample.ttf", 16);
+	DLibV::Fuente_TTF f("data/fuentes/Akashi.ttf", 16);
 
 	//Y así podemos usar el localizador.
 	const int id_idioma=0;
