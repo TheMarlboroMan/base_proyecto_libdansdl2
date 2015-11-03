@@ -10,10 +10,17 @@ Controlador_intro::Controlador_intro(Director_estados &DI, const Localizador& lo
 {
 	rep_txt.establecer_posicion(16, 400);
 	rep_ttf.establecer_posicion(16, 300);
+
+	rep_txt.hacer_estatica();
+	rep_ttf.hacer_estatica();
+
+	//TODO: En caso de excepción estamos tirando dentro de un constructor.
+	escena.parsear("data/recursos/escena.dat", "escena_prueba");
 }
 
 Controlador_intro::~Controlador_intro()
 {
+
 }
 
 void Controlador_intro::preloop(Input_base& input, float delta)
@@ -51,7 +58,9 @@ void Controlador_intro::loop(Input_base& input, float delta)
 
 void Controlador_intro::dibujar(DLibV::Pantalla& pantalla)
 {
+//	escena.obtener_por_id("mi_caja")->establecer_alpha(64);
 	pantalla.limpiar(128, 128, 128, 255);
+	escena.volcar(pantalla);
 	rep_txt.volcar(pantalla);
 	rep_ttf.volcar(pantalla);
 }

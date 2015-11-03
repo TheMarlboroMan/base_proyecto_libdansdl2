@@ -1,0 +1,16 @@
+escena_prueba:
+[
+	{
+		tipo:"caja",
+		id:"mi_caja",
+		pos:[20,20,80,80],
+		color:[255, 0, 0],
+		alpha:255
+	},
+	{
+		tipo:"caja",
+		pos:[140, 20, 40, 40],
+		color:[0, 0, 255],
+		alpha:128
+	}
+]

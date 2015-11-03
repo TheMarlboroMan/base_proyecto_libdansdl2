@@ -5,6 +5,7 @@
 #include "../framework/derivada/localizador.h"
 #include <string>
 #include <video/representacion/representacion_grafica/representacion_ttf/representacion_ttf.h>
+#include <compositor_vista.h>
 
 class Controlador_intro:public Controlador_base
 {
@@ -26,9 +27,11 @@ class Controlador_intro:public Controlador_base
 
 	enum textos{uno=1, dos=2, tres=3, cuatro=4, fin};
 	const Localizador&				loc;
+	Herramientas_proyecto::Compositor_vista		escena;
+
 	int						texto_actual;
-	DLibV::Representacion_texto_auto_estatica 	rep_txt;
-	DLibV::Representacion_TTF_estatica		rep_ttf;
+	DLibV::Representacion_texto_auto	 	rep_txt;
+	DLibV::Representacion_TTF			rep_ttf;
 
 	///////////////
 	//Métodos internos.
