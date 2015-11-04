@@ -5,11 +5,17 @@ Controlador_intro::Controlador_intro(Director_estados &DI, const Localizador& lo
 	:Controlador_base(DI),
 	loc(loc),
 	texto_actual(uno),
+	camara(0, 0, 400, 400),
 	rep_txt(DLibV::Gestor_superficies::obtener(App::Recursos_graficos::RS_FUENTE_BASE), loc.obtener(texto_actual)),
-	rep_ttf(fuente, 255, 255, 255, 255, loc.obtener(texto_actual))
+	rep_ttf(fuente, 255, 255, 255, 255, loc.obtener(texto_actual)),
+	rep_tiles(DLibV::Gestor_texturas::obtener(App::Recursos_graficos::RT_TILES))
 {
 	rep_txt.establecer_posicion(16, 400);
 	rep_ttf.establecer_posicion(16, 300);
+
+	rep_tiles.establecer_posicion(0, 128, 64, 64);
+	rep_tiles.establecer_recorte(32, 0, 32, 32);
+	rep_tiles.establecer_pincel(SDL_Rect{8, 8, 16, 16});
 
 	rep_txt.hacer_estatica();
 	rep_ttf.hacer_estatica();
@@ -56,14 +62,21 @@ void Controlador_intro::loop(Input_base& input, float delta)
 		{
 			solicitar_cambio_estado(Director_estados::t_estados::EJEMPLO);
 		}
+
+		if(input.es_input_pulsado(Input::I_IZQUIERDA)) camara.movimiento_relativo(-1, 0);
+		else if(input.es_input_pulsado(Input::I_DERECHA)) camara.movimiento_relativo(1, 0);
+
+		if(input.es_input_pulsado(Input::I_ARRIBA)) camara.movimiento_relativo(0, -1);
+		else if(input.es_input_pulsado(Input::I_ABAJO)) camara.movimiento_relativo(0, 1);
 	}
 }
 
 void Controlador_intro::dibujar(DLibV::Pantalla& pantalla)
 {
 //	escena.obtener_por_id("mi_caja")->establecer_alpha(64);
-//	pantalla.limpiar(128, 128, 128, 255);
-	escena.volcar(pantalla);
+	escena.volcar(pantalla, camara);
 	rep_txt.volcar(pantalla);
 	rep_ttf.volcar(pantalla);
+	rep_tiles.volcar(pantalla, camara);
 }
+

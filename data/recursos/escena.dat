@@ -6,7 +6,7 @@ escena_prueba:
 	},
 	{
 		tipo:"caja", id:"mi_caja", 
-		pos:[20,20,80,80], rgb:[255, 0, 0],
+		pos:[0,0,128,128], rgb:[255, 0, 0],
 		orden:1
 	},
 	{

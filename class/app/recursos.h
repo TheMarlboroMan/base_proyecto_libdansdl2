@@ -17,7 +17,8 @@ class Recursos_graficos
 	};
 
 	enum texturas{
-		RT_SPRITES=1
+		RT_SPRITES=1,
+		RT_TILES=2
 	};
 };
 

@@ -5,6 +5,7 @@
 #include "../framework/derivada/localizador.h"
 #include <string>
 #include <video/representacion/representacion_grafica/representacion_ttf/representacion_ttf.h>
+#include <video/representacion/representacion_grafica/representacion_bitmap/representacion_bitmap_patron.h>
 #include <compositor_vista.h>
 
 class Controlador_intro:public Controlador_base
@@ -30,8 +31,10 @@ class Controlador_intro:public Controlador_base
 	Herramientas_proyecto::Compositor_vista		escena;
 
 	int						texto_actual;
+	DLibV::Camara					camara;
 	DLibV::Representacion_texto_auto	 	rep_txt;
 	DLibV::Representacion_TTF			rep_ttf;
+	DLibV::Representacion_bitmap_patron		rep_tiles;
 
 	///////////////
 	//Métodos internos.
