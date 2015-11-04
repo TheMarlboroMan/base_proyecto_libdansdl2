@@ -1,6 +1,9 @@
 #ifndef RECURSOS_PROYECTO_H
 #define RECURSOS_PROYECTO_H
 
+namespace App
+{
+
 class Recursos_graficos
 {
 	private:
@@ -14,7 +17,7 @@ class Recursos_graficos
 	};
 
 	enum texturas{
-		RT_DEFECTO=1
+		RT_SPRITES=1
 	};
 };
 
@@ -35,4 +38,5 @@ class Recursos_audio
 	};
 };
 
+}
 #endif

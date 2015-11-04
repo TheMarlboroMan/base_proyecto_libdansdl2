@@ -5,7 +5,7 @@ Controlador_intro::Controlador_intro(Director_estados &DI, const Localizador& lo
 	:Controlador_base(DI),
 	loc(loc),
 	texto_actual(uno),
-	rep_txt(DLibV::Gestor_superficies::obtener(Recursos_graficos::RS_FUENTE_BASE), loc.obtener(texto_actual)),
+	rep_txt(DLibV::Gestor_superficies::obtener(App::Recursos_graficos::RS_FUENTE_BASE), loc.obtener(texto_actual)),
 	rep_ttf(fuente, 255, 255, 255, 255, loc.obtener(texto_actual))
 {
 	rep_txt.establecer_posicion(16, 400);
@@ -15,6 +15,9 @@ Controlador_intro::Controlador_intro(Director_estados &DI, const Localizador& lo
 	rep_ttf.hacer_estatica();
 
 	//TODO: En caso de excepción estamos tirando dentro de un constructor.
+	escena.mapear_textura("sprites", DLibV::Gestor_texturas::obtener(App::Recursos_graficos::RT_SPRITES));
+	escena.mapear_superficie("fuente", DLibV::Gestor_superficies::obtener(App::Recursos_graficos::RS_FUENTE_BASE));
+	escena.mapear_fuente("fuente", &fuente);
 	escena.parsear("data/recursos/escena.dat", "escena_prueba");
 }
 
@@ -59,7 +62,7 @@ void Controlador_intro::loop(Input_base& input, float delta)
 void Controlador_intro::dibujar(DLibV::Pantalla& pantalla)
 {
 //	escena.obtener_por_id("mi_caja")->establecer_alpha(64);
-	pantalla.limpiar(128, 128, 128, 255);
+//	pantalla.limpiar(128, 128, 128, 255);
 	escena.volcar(pantalla);
 	rep_txt.volcar(pantalla);
 	rep_ttf.volcar(pantalla);

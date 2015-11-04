@@ -1,16 +1,35 @@
 escena_prueba:
 [
 	{
-		tipo:"caja",
-		id:"mi_caja",
-		pos:[20,20,80,80],
-		color:[255, 0, 0],
-		alpha:255
+		tipo:"pantalla", 
+		rgba:[32, 32, 32, 255]
+	},
+	{
+		tipo:"caja", id:"mi_caja", 
+		pos:[20,20,80,80], rgb:[255, 0, 0],
+		orden:1
 	},
 	{
 		tipo:"caja",
-		pos:[140, 20, 40, 40],
-		color:[0, 0, 255],
-		alpha:128
+		pos:[80, 16, 40, 40], rgb:[0, 0, 255],
+		orden:2
+	},
+	{
+		tipo:"bitmap",
+		pos:[200, 200, 14, 30], rec:[0, 0, 14, 30],
+		textura:"sprites", alpha:192
+	},
+	{
+		tipo:"texto", 
+		pos:[20, 150],
+		superficie:"fuente",
+		texto:"Hola... Salgo de un fichero."
+	},
+	{
+		tipo:"ttf",
+		pos:[20, 180],
+		fuente:"fuente",
+		texto:"Hola... Yo también salgo de un fichero",
+		rgba:[64, 64, 255, 128]
 	}
 ]
