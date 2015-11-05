@@ -16,18 +16,25 @@ escena_prueba:
 	},
 	{
 		tipo:"bitmap",
-		pos:[200, 200, 14, 30], rec:[0, 0, 14, 30],
+		pos:[200, 64, 14, 30], rec:[0, 0, 14, 30],
 		textura:"sprites", alpha:192
 	},
 	{
+		tipo:"patron",
+		pos:[0, 128, 256, 64], 
+		rec:[0, 0, 64, 32],
+		pincel:[0, 0, 64, 32],
+		textura:"tiles"
+	},
+	{
 		tipo:"texto", 
-		pos:[20, 150],
+		pos:[20, 200],
 		superficie:"fuente",
 		texto:"Hola... Salgo de un fichero."
 	},
 	{
 		tipo:"ttf",
-		pos:[20, 180],
+		pos:[20, 240],
 		fuente:"fuente",
 		texto:"Hola... Yo también salgo de un fichero",
 		rgba:[64, 64, 255, 128]

@@ -34,7 +34,7 @@ class Controlador_intro:public Controlador_base
 	DLibV::Camara					camara;
 	DLibV::Representacion_texto_auto	 	rep_txt;
 	DLibV::Representacion_TTF			rep_ttf;
-	DLibV::Representacion_bitmap_patron		rep_tiles;
+//	DLibV::Representacion_bitmap_patron		rep_tiles;
 
 	///////////////
 	//Métodos internos.
