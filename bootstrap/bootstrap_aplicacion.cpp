@@ -39,7 +39,7 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	int w=tok["prueba_datos"]["config_video"]["medidas"][0], 
 		h=tok["prueba_datos"]["config_video"]["medidas"][1];
 
-	p.inicializar(w, h);
+	p.inicializar(w, h); //p.inicializar(w*2, h*2) Hace la pantalla más grande pero mantiene el aspecto :D!.
 	p.establecer_medidas_logicas(w, h);
 	
 	//Puede leer cadenas, enteros, floats y bools. Aún no tenemos los
