@@ -36,6 +36,7 @@ obtenemos siempre mediante los gestores de turno.
 
 #include <stdexcept>
 #include <libDan2.h>
+#include <class/lector_txt.h>
 
 extern DLibH::Log_base LOG;
 

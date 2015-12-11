@@ -3,7 +3,7 @@
 #include "../class/controladores/controlador_intro.h"
 #include "../class/controladores/controlador_ejemplo.h"
 
-#include <dnot_parser.h>
+#include <class/dnot_parser.h>
 
 using namespace App;
 

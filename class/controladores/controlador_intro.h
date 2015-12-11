@@ -6,7 +6,7 @@
 #include <string>
 #include <video/representacion/representacion_grafica/representacion_ttf/representacion_ttf.h>
 #include <video/representacion/representacion_grafica/representacion_bitmap/representacion_bitmap_patron.h>
-#include <compositor_vista.h>
+#include <class/compositor_vista.h>
 
 class Controlador_intro:public Controlador_base
 {

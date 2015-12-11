@@ -10,9 +10,9 @@ CC=g++
 EJECUTABLE=a.out
 LIMPIAR=rm objects/*; rmdir objects; rm $(EJECUTABLE);
 
-DIR_HOME=/home/dani/programacion/c++/
+DIR_HOME=/home/dani/programacion/
 DIR_LIBDAN2=$(DIR_HOME)libdansdl2
-DIR_HERRAMIENTAS_PROYECTO=$(DIR_HOME)herramientas_proyecto/class/
+DIR_HERRAMIENTAS_PROYECTO=$(DIR_HOME)herramientas_proyecto/
 DIR_O_HERRAMIENTAS_PROYECTO=$(DIR_HOME)herramientas_proyecto/objects/
 PREPARAR_DIR_OBJECTS=mkdir -p objects; touch objects/dummy
 

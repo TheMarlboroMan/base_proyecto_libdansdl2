@@ -2,7 +2,7 @@
 #define CONTROLADOR_EJEMPLO
 
 #include "controlador_base.h"
-#include <generador_numeros.h>
+#include <class/generador_numeros.h>
 
 class Controlador_ejemplo:public Controlador_base
 {
