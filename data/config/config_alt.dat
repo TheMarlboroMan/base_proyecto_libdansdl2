@@ -1,0 +1,8 @@
+#Este archivo de configuración usa los dos puntos como separador.
+#Las líneas que comienzan con # son comentarios.
+clave1:valor1
+clave2:valor2
+#comentario... Si lo eliminamos se convierte en error al no tener el separador.
+clave3:valor3
+#Las líneas en blanco se ignoran de modo que el mapa de configuración para
+#este fichero tendria un total de tres claves.
