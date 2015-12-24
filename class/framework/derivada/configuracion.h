@@ -15,12 +15,13 @@ class Configuracion: public Configuracion_base
 
 	protected: 
 
-	virtual void grabar_valores_configuracion(std::ofstream&, const std::string&);
+	virtual void grabar_valores_configuracion(std::ofstream&, char);
 	virtual void asignar_valores_por_defecto();
 	virtual void procesar_clave_y_valor(const std::string&, const std::string&);
 
 	std::string obtener_ruta_archivo() const {return "data/config/configuracion.dat";}
-	std::string obtener_separador_archivo() const {return ":";}
+	char obtener_separador_archivo() const {return ':';}
+	char obtener_comentario() const {return '#';}
 	std::string obtener_clave_version_archivo() const {return "v";}
 	std::string obtener_version_archivo() const {return "1";}
 	std::string obtener_clave_pantalla_completa() const {return "pantalla_completa";}

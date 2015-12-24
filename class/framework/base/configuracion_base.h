@@ -18,13 +18,14 @@ class Configuracion_base
 	protected: 
 
 		//Estos tienen que hacer la misma función que los métodos _base.
-	virtual void grabar_valores_configuracion(std::ofstream&, const std::string&)=0;
+	virtual void grabar_valores_configuracion(std::ofstream&, char)=0;
 	virtual void asignar_valores_por_defecto()=0;
 	virtual void procesar_clave_y_valor(const std::string&, const std::string&)=0;
 
 		//Estos simplemente devuelven claves de configuración.
 	virtual std::string obtener_ruta_archivo() const=0;
-	virtual std::string obtener_separador_archivo() const=0;
+	virtual char obtener_separador_archivo() const=0;
+	virtual char obtener_comentario() const=0;
 	virtual std::string obtener_clave_version_archivo() const=0;
 	virtual std::string obtener_version_archivo() const=0;
 	virtual std::string obtener_clave_pantalla_completa() const=0;
@@ -71,7 +72,7 @@ class Configuracion_base
 	// Métodos internos.
 	
 	private:	
-	void grabar_valores_configuracion_base(std::ofstream&, const std::string&);
+	void grabar_valores_configuracion_base(std::ofstream&, char);
 	void asignar_valores_por_defecto_base();
 	bool procesar_clave_y_valor_base(const std::string&, const std::string&);
 

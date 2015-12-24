@@ -4,6 +4,7 @@
 #include "../class/controladores/controlador_ejemplo.h"
 
 #include <class/dnot_parser.h>
+#include <source/string_utilidades.h>
 
 using namespace App;
 
@@ -75,6 +76,13 @@ void App::loop_aplicacion(Kernel_app& kernel)
 	std::string cosa("Hola... ");
 	cosa+=tok["prueba_datos"]["complejo"]["coleccion"][3].acc_string();
 	std::cout<<cosa<<std::endl;	
+
+	//Funciones libres para abrir un fichero de tipo "configuración" 
+	//y convertirlo en un mapa de claves y valores, que es algo que
+	//hacemos bastante a menudo...
+
+	auto mapa_config=Herramientas_proyecto::generar_mapa_pares("data/config/config_alt.dat", ':', '#');
+	std::cout<<"Mapa configuración con "<<mapa_config.size()<<" entradas... Para la clave clave1 = "<<mapa_config["clave1"]<<std::endl;
 
 	//Controladores e interfaces.
 	Director_estados DI;

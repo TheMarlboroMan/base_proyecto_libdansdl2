@@ -1,4 +1,6 @@
 #include "configuracion_base.h"
+#include <map>
+#include <source/string_utilidades.h>
 
 Configuracion_base::Configuracion_base()
 {
@@ -32,41 +34,35 @@ void Configuracion_base::asignar_valores_por_defecto_base()
 
 void Configuracion_base::cargar()
 {
-	std::ifstream archivo(obtener_ruta_archivo().c_str(), std::ios::in);
-	const std::string SEPARADOR_ARCHIVO=obtener_separador_archivo();
+	const char separador=obtener_separador_archivo();
+	const char comentario=obtener_comentario();
 
-	if(!archivo.is_open())
+	try
+	{
+		std::map<std::string, std::string> valores=Herramientas_proyecto::generar_mapa_pares(obtener_ruta_archivo().c_str(), separador, comentario);
+
+		for(const auto& par : valores)
+		{
+			//Si el valor no existe el método base, usamos el método derivado (que puede ser el mismo...).
+			//Lo hacemos para evitar tener que llamar al método base desde la derivada.
+			if(!Configuracion_base::procesar_clave_y_valor_base(par.first, par.second))
+			{
+				procesar_clave_y_valor(par.first, par.second);
+			}
+		}
+	}
+	catch(std::runtime_error& e)
 	{
 		this->grabar();
 		this->cargar();
-		return;
-	}
-
-	while(!archivo.eof())
-	{
-		std::string cadena=DLibH::Herramientas::obtener_siguiente_linea_archivo(archivo);
-
-		if(cadena.size())
-		{
-			int pos=cadena.find(SEPARADOR_ARCHIVO);
-	
-			if(pos!=-1)
-			{
-				const std::string clave=cadena.substr(0, pos);
-				const std::string valor=cadena.substr(pos+1);
-				//Si el valor no existe el método base, usamos el método derivado (que puede ser el mismo...).
-				//Lo hacemos para evitar tener que llamar al método base desde la derivada.
-				if(!Configuracion_base::procesar_clave_y_valor_base(clave, valor))
-				{
-					procesar_clave_y_valor(clave, valor);
-				}
-			}						
-		}
+		return;	
 	}
 }
 
 bool Configuracion_base::procesar_clave_y_valor_base(const std::string& clave, const std::string& valor)
 {
+	//TODO: Esto debe cambiar también...
+
 	if(clave.compare(obtener_clave_version_archivo())==0)
 	{
 		this->version_archivo=std::atoi(valor.c_str());
@@ -131,15 +127,15 @@ bool Configuracion_base::procesar_clave_y_valor_base(const std::string& clave, c
 void Configuracion_base::grabar()
 {
 	std::ofstream archivo(obtener_ruta_archivo().c_str(), std::ios::out);
-	const std::string SEPARADOR_ARCHIVO=obtener_separador_archivo();
+	const char separador=obtener_separador_archivo();
 
 	if(!archivo.is_open()) return;	//Fallo catastrófico...
-	grabar_valores_configuracion_base(archivo, SEPARADOR_ARCHIVO);
-	grabar_valores_configuracion(archivo, SEPARADOR_ARCHIVO);
+	grabar_valores_configuracion_base(archivo, separador);
+	grabar_valores_configuracion(archivo, separador);
 	archivo.close();	
 }
 
-void Configuracion_base::grabar_valores_configuracion_base(std::ofstream& archivo, const std::string& SEPARADOR_ARCHIVO)
+void Configuracion_base::grabar_valores_configuracion_base(std::ofstream& archivo, char SEPARADOR_ARCHIVO)
 {
 	archivo<<obtener_clave_version_archivo()<<SEPARADOR_ARCHIVO<<obtener_version_archivo()<<std::endl;
 	archivo<<obtener_clave_pantalla_completa()<<SEPARADOR_ARCHIVO<<this->pantalla_completa<<std::endl;

@@ -12,7 +12,7 @@ Configuracion::~Configuracion()
 
 }
 
-void Configuracion::grabar_valores_configuracion(std::ofstream& archivo, const std::string& SEPARADOR)
+void Configuracion::grabar_valores_configuracion(std::ofstream& archivo, char SEPARADOR)
 {
 	archivo<<CLAVE_IDIOMA<<SEPARADOR<<idioma<<std::endl;	
 }
