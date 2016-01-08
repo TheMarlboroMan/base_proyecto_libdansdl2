@@ -9,6 +9,7 @@ proyecto implementando todos los métodos virtuales puros que tiene.
 */
 
 #include <herramientas/herramientas/herramientas.h>
+#include <class/fichero_pares.h>
 
 class Configuracion_base
 {
@@ -56,6 +57,11 @@ class Configuracion_base
 
 	private:
 
+	//TODO: Estas propiedades desaparecen, todas y cada una de ellas, y son reemplazadas
+	//por un Fichero_pares.
+
+	Herramientas_proyecto::fichero_pares			pares;
+
 	unsigned short int version_archivo;
 	unsigned short int pantalla_completa;
 	unsigned short int modo_hardware;
@@ -81,6 +87,8 @@ class Configuracion_base
 
 	public:
 
+	//TODO: Esto cambiaría todo para ser castings...
+
 	unsigned short int acc_pantalla_completa() const {return this->pantalla_completa;}
 	unsigned short int acc_modo_hardware() const {return this->modo_hardware;}
 	unsigned short int acc_pantalla_doble_buffer() const {return this->pantalla_doble_buffer;}
@@ -92,6 +100,8 @@ class Configuracion_base
 	int acc_audio_buffers() const {return this->audio_buffers;}
 	int acc_audio_canales() const {return this->audio_canales;}
 	int acc_version_archivo() const {return this->version_archivo;}
+
+	//TODO: Esto cambiaría también para tener castings...	
 
 	void mut_modo_hardware(unsigned short int p_valor) {this->modo_hardware=p_valor;}
 	void mut_pantalla_completa(unsigned short int p_valor) {this->pantalla_completa=p_valor;}

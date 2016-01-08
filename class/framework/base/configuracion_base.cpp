@@ -1,9 +1,14 @@
 #include "configuracion_base.h"
 #include <map>
 #include <source/string_utilidades.h>
-
+#include <class/ficheros_pares.h>
+  
 Configuracion_base::Configuracion_base()
 {
+	//TODO: inicializar valores por defecto base en el mapa de configuración... 
+	//Hay por ahí un método asignar_valores_por_defecto_base pero me
+	//gustaría cambiar un poco el flow de esto, que está confuso.
+
 }
 
 Configuracion_base::~Configuracion_base()
@@ -13,6 +18,8 @@ Configuracion_base::~Configuracion_base()
 
 void Configuracion_base::iniciar()
 {
+	//TODO: Quizás esto sería llamado desde el constructor y el método desaparecería del todo.
+
 	this->asignar_valores_por_defecto_base();
 	this->asignar_valores_por_defecto();
 	this->cargar();
@@ -20,6 +27,8 @@ void Configuracion_base::iniciar()
 
 void Configuracion_base::asignar_valores_por_defecto_base()
 {
+	//TODO: Esto serían castings.
+
 	this->pantalla_completa=valor_pantalla_completa_defecto();
 	this->modo_hardware=valor_modo_hardware_defecto();
 	this->pantalla_doble_buffer=valor_pantalla_doble_buffer_defecto();
@@ -34,6 +43,9 @@ void Configuracion_base::asignar_valores_por_defecto_base()
 
 void Configuracion_base::cargar()
 {
+	//TODO: Podemos eliminar completamente todas las propiedades y, en su lugar,
+	//hacer los casts adecuados en los setters y getters. Lo único que tendríamos que hacer
+	//es inicializar la configuración con los valores deseados por defecto...
 	const char separador=obtener_separador_archivo();
 	const char comentario=obtener_comentario();
 
@@ -61,6 +73,8 @@ void Configuracion_base::cargar()
 
 bool Configuracion_base::procesar_clave_y_valor_base(const std::string& clave, const std::string& valor)
 {
+	//TODO: Esto ya sería completamente innecesario.
+
 	//TODO: Esto debe cambiar también...
 
 	if(clave.compare(obtener_clave_version_archivo())==0)
@@ -126,6 +140,9 @@ bool Configuracion_base::procesar_clave_y_valor_base(const std::string& clave, c
 
 void Configuracion_base::grabar()
 {
+	//TODO: Podemos usar una clase de configuración  para encargarnos de esto y deshacernos de todo el tema de los parámetros
+	//de configuración. 
+
 	std::ofstream archivo(obtener_ruta_archivo().c_str(), std::ios::out);
 	const char separador=obtener_separador_archivo();
 
@@ -137,6 +154,8 @@ void Configuracion_base::grabar()
 
 void Configuracion_base::grabar_valores_configuracion_base(std::ofstream& archivo, char SEPARADOR_ARCHIVO)
 {
+	//TODO: Esto sería una llamada al guardar... Perderíamos el orden de la versión del archivo...
+
 	archivo<<obtener_clave_version_archivo()<<SEPARADOR_ARCHIVO<<obtener_version_archivo()<<std::endl;
 	archivo<<obtener_clave_pantalla_completa()<<SEPARADOR_ARCHIVO<<this->pantalla_completa<<std::endl;
 	archivo<<obtener_clave_modo_hardware()<<SEPARADOR_ARCHIVO<<this->modo_hardware<<std::endl;
