@@ -9,12 +9,11 @@
 #include "../interface_controlador.h"
 #include <class/controlador_argumentos.h>
 
-class Kernel_excepcion
+class Kernel_exception
+	:public std::runtime_error
 {
 	public:
-
-	std::string mensaje;
-	Kernel_excepcion(const std::string& m):mensaje(m) {}
+	Kernel_exception(const std::string& m):std::runtime_error(m) {}
 };
 
 

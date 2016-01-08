@@ -22,7 +22,7 @@ class Kernel_app:public Kernel_base
 
 	public:
 
-	Kernel_app(Herramientas_proyecto::Controlador_argumentos& CARG):Kernel_base(CARG) {}
+	Kernel_app(Herramientas_proyecto::Controlador_argumentos& CARG);
 
 	virtual void inicializar() {Kernel_base::inicializar();}	//Si es necesario podemos personalizar varios aspectos aquí. Esto se llamará una única vez, en el main.
 	virtual void paso() {}		//Se llamará una vez por cada consumo de delta en el loop del kernel base.
@@ -33,7 +33,7 @@ class Kernel_app:public Kernel_base
 	virtual int acc_w_pantalla_inicial() const {return 800;}
 	virtual int acc_h_pantalla_inicial() const {return 600;}
 	virtual Input_base& acc_input() {return input;}
-	virtual Configuracion_base& acc_configuracion() {return configuracion;}
+	virtual Configuracion& acc_configuracion() {return configuracion;}
 	virtual Cargador_recursos_base& acc_cargador_recursos() {return cargador_recursos;}
 	virtual unsigned int acc_recurso_fps() const {return App::Recursos_graficos::RS_FUENTE_BASE;}
 };

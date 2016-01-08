@@ -8,25 +8,63 @@ propiedades. Podemos (y debemos) extenderla para la configuración de cada
 proyecto implementando todos los métodos virtuales puros que tiene.
 */
 
-#include <herramientas/herramientas/herramientas.h>
 #include <class/fichero_pares.h>
+#include <iostream>
+
+class Configuracion_base_no_fichero_exception
+	:public std::runtime_error
+{
+	public:
+	Configuracion_base_no_fichero_exception(const std::string& ruta)
+		:std::runtime_error("No se puede localizar el fichero "+ruta)
+	{}
+};
 
 class Configuracion_base
 {
-	////////////////////////////////////
-	// A implementar por clases que la extiendan...
+	////////////////////////////////
+	// Interface pública.
+
+	public:
+
+	int acc_pantalla_completa() const 	{return std::atoi(pares[obtener_clave_pantalla_completa()].c_str());}
+	int acc_modo_hardware() const 		{return std::atoi(pares[obtener_clave_modo_hardware()].c_str());}
+	int acc_pantalla_doble_buffer() const 	{return std::atoi(pares[obtener_clave_pantalla_doble_buffer()].c_str());}
+	int acc_pantalla_anyformat() const 	{return std::atoi(pares[obtener_clave_pantalla_anyformat()].c_str());}
+	int acc_volumen_audio() const		{return std::atoi(pares[obtener_clave_volumen_audio()].c_str());}
+	int acc_volumen_musica() const		{return std::atoi(pares[obtener_clave_volumen_musica()].c_str());}
+	int acc_audio_ratio() const		{return std::atoi(pares[obtener_clave_audio_ratio()].c_str());}
+	int acc_audio_salidas() const		{return std::atoi(pares[obtener_clave_audio_salidas()].c_str());}
+	int acc_audio_buffers() const		{return std::atoi(pares[obtener_clave_audio_buffers()].c_str());}
+	int acc_audio_canales() const		{return std::atoi(pares[obtener_clave_audio_canales()].c_str());}
+	int acc_version_archivo() const		{return std::atoi(pares[obtener_clave_version_archivo()].c_str());}
+
+	void mut_pantalla_completa(int p_valor) 	{pares[obtener_clave_pantalla_completa()]=std::to_string(p_valor);}
+	void mut_modo_hardware(int p_valor)		{pares[obtener_clave_modo_hardware()]=std::to_string(p_valor);}
+	void mut_pantalla_doble_buffer(int p_valor)	{pares[obtener_clave_pantalla_doble_buffer()]=std::to_string(p_valor);}
+	void mut_pantalla_anyformat(int p_valor)	{pares[obtener_clave_pantalla_anyformat()]=std::to_string(p_valor);}
+	void mut_volumen_audio(int p_valor)		{pares[obtener_clave_volumen_audio()]=std::to_string(p_valor);}
+	void mut_volumen_musica(int p_valor)		{pares[obtener_clave_volumen_musica()]=std::to_string(p_valor);}
+	void mut_audio_ratio(int p_valor)		{pares[obtener_clave_audio_ratio()]=std::to_string(p_valor);}
+	void mut_audio_salidas(int p_valor)		{pares[obtener_clave_audio_salidas()]=std::to_string(p_valor);}
+	void mut_audio_buffers(int p_valor)		{pares[obtener_clave_audio_buffers()]=std::to_string(p_valor);}
+	void mut_audio_canales(int p_valor)		{pares[obtener_clave_audio_canales()]=std::to_string(p_valor);}
+
+	void cargar();
+	void grabar();
+
+	Configuracion_base(const std::string& ruta, char separador, char comentario);
 
 	protected: 
 
-		//Estos tienen que hacer la misma función que los métodos _base.
-	virtual void grabar_valores_configuracion(std::ofstream&, char)=0;
-	virtual void asignar_valores_por_defecto()=0;
-	virtual void procesar_clave_y_valor(const std::string&, const std::string&)=0;
+	//Añade la posibilidad de que clases derivadas guarden sus valores.
+	void	configurar(const std::string& clave, const std::string& valor) {pares[clave]=valor;}
+	const std::string& valor_configuracion(const std::string& clave) const {return pares[clave];}
+
+	////////////////////////////////////
+	// A implementar por clases que la extiendan...
 
 		//Estos simplemente devuelven claves de configuración.
-	virtual std::string obtener_ruta_archivo() const=0;
-	virtual char obtener_separador_archivo() const=0;
-	virtual char obtener_comentario() const=0;
 	virtual std::string obtener_clave_version_archivo() const=0;
 	virtual std::string obtener_version_archivo() const=0;
 	virtual std::string obtener_clave_pantalla_completa() const=0;
@@ -40,13 +78,13 @@ class Configuracion_base
 	virtual std::string obtener_clave_audio_salidas() const=0;
 	virtual std::string obtener_clave_audio_canales() const=0;
 
-		//Y estos valores de configuración por defecto.
-	virtual unsigned short int valor_pantalla_completa_defecto() const=0; //0 -> No / 1 -> Si
-	virtual unsigned short int valor_modo_hardware_defecto() const=0; //0 -> No / 1 -> Si
-	virtual unsigned short int valor_pantalla_doble_buffer_defecto() const=0;	//0 -> No / 1 -> Si
-	virtual unsigned short int valor_pantalla_anyformat_defecto() const=0;	//0 -> No / 1 -> Si
-	virtual unsigned short int valor_volumen_audio_defecto() const=0;	//0-128...
-	virtual unsigned short int valor_volumen_musica_defecto() const=0;	//0-128...
+		//Y estos valores de configuración por defecto que se castearán llamando al setter.
+	virtual int valor_pantalla_completa_defecto() const=0; //0 -> No / 1 -> Si
+	virtual int valor_modo_hardware_defecto() const=0; //0 -> No / 1 -> Si
+	virtual int valor_pantalla_doble_buffer_defecto() const=0;	//0 -> No / 1 -> Si
+	virtual int valor_pantalla_anyformat_defecto() const=0;	//0 -> No / 1 -> Si
+	virtual int valor_volumen_audio_defecto() const=0;	//0-128...
+	virtual int valor_volumen_musica_defecto() const=0;	//0-128...
 	virtual int valor_audio_ratio_defecto() const=0; //Por ejemplo... 44100.
 	virtual int valor_audio_salidas_defecto() const=0; //1 -> mono, 2 -> stereo.
 	virtual int valor_audio_buffers_defecto() const=0; //Por ejemplo... 1024;
@@ -57,64 +95,9 @@ class Configuracion_base
 
 	private:
 
-	//TODO: Estas propiedades desaparecen, todas y cada una de ellas, y son reemplazadas
-	//por un Fichero_pares.
+	void 						asignar_valores_por_defecto();
 
-	Herramientas_proyecto::fichero_pares			pares;
-
-	unsigned short int version_archivo;
-	unsigned short int pantalla_completa;
-	unsigned short int modo_hardware;
-	unsigned short int pantalla_doble_buffer;
-	unsigned short int pantalla_anyformat;
-	int volumen_audio;
-	int volumen_musica;
-	int audio_ratio;
-	int audio_salidas;
-	int audio_buffers;
-	int audio_canales;
-
-	////////////////////////////////
-	// Métodos internos.
-	
-	private:	
-	void grabar_valores_configuracion_base(std::ofstream&, char);
-	void asignar_valores_por_defecto_base();
-	bool procesar_clave_y_valor_base(const std::string&, const std::string&);
-
-	////////////////////////////////
-	// Interface pública.
-
-	public:
-
-	//TODO: Esto cambiaría todo para ser castings...
-
-	unsigned short int acc_pantalla_completa() const {return this->pantalla_completa;}
-	unsigned short int acc_modo_hardware() const {return this->modo_hardware;}
-	unsigned short int acc_pantalla_doble_buffer() const {return this->pantalla_doble_buffer;}
-	unsigned short int acc_pantalla_anyformat() const {return this->pantalla_anyformat;}
-	int acc_volumen_audio() const {return this->volumen_audio;}
-	int acc_volumen_musica() const {return this->volumen_musica;}
-	int acc_audio_ratio() const {return this->audio_ratio;}
-	int acc_audio_salidas() const {return this->audio_salidas;}
-	int acc_audio_buffers() const {return this->audio_buffers;}
-	int acc_audio_canales() const {return this->audio_canales;}
-	int acc_version_archivo() const {return this->version_archivo;}
-
-	//TODO: Esto cambiaría también para tener castings...	
-
-	void mut_modo_hardware(unsigned short int p_valor) {this->modo_hardware=p_valor;}
-	void mut_pantalla_completa(unsigned short int p_valor) {this->pantalla_completa=p_valor;}
-	void mut_pantalla_doble_buffer(unsigned short int p_valor) {this->pantalla_doble_buffer=p_valor;}
-	void mut_pantalla_anyformat(unsigned short int p_valor) {this->pantalla_anyformat=p_valor;}
-	void mut_volumen_audio(int p_valor) {this->volumen_audio=p_valor;}
-	void mut_volumen_musica(int p_valor) {this->volumen_musica=p_valor;}
-	void cargar();
-	void grabar();
-	void iniciar();
-
-	Configuracion_base();
-	virtual ~Configuracion_base();
+	Herramientas_proyecto::Fichero_pares		pares;
 };
 
 #endif

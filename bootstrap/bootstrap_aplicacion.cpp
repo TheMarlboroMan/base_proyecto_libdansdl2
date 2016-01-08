@@ -12,12 +12,11 @@ void App::loop_aplicacion(Kernel_app& kernel)
 {
 	//Declaraciones de herramientas externas.
 
-	//Así declaramos una fuente ttf externa...
+	//Así declaramos una fuente ttf externa... 
 	DLibV::Fuente_TTF f("data/fuentes/Akashi.ttf", 16);
 
 	//Y así podemos usar el localizador.
-	const int id_idioma=0;
-	Localizador loc("data/localizacion/textos", id_idioma);
+	Localizador loc("data/localizacion/textos", kernel.acc_configuracion().acc_idioma());
 	
 	/** También podemos ser más explícitos para declarar el localizador.
 	* Localizador loc("data/localizacion/textos");
@@ -79,7 +78,8 @@ void App::loop_aplicacion(Kernel_app& kernel)
 
 	//Funciones libres para abrir un fichero de tipo "configuración" 
 	//y convertirlo en un mapa de claves y valores, que es algo que
-	//hacemos bastante a menudo...
+	//hacemos bastante a menudo... Una extensión de esto es la clase de
+	//configuración del framework.
 
 	auto mapa_config=Herramientas_proyecto::generar_mapa_pares("data/config/config_alt.dat", ':', '#');
 	std::cout<<"Mapa configuración con "<<mapa_config.size()<<" entradas... Para la clave clave1 = "<<mapa_config["clave1"]<<std::endl;

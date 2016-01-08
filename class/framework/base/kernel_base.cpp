@@ -1,4 +1,5 @@
 #include "kernel_base.h"
+#include <cstdlib>
 
 Kernel_base::Kernel_base(Herramientas_proyecto::Controlador_argumentos& carg)
 	:
@@ -20,7 +21,7 @@ void Kernel_base::inicializar()
 {
 	//Cargar configuración.
 	Configuracion_base& configuracion=acc_configuracion();
-	configuracion.iniciar();
+	configuracion.cargar();
 
 	inicializar_entorno_grafico(pantalla, acc_w_pantalla_inicial(), acc_h_pantalla_inicial());
 	inicializar_entorno_audio();

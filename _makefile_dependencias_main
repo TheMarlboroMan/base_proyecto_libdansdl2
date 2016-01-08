@@ -5,7 +5,8 @@ $(DIR_O_HERRAMIENTAS_PROYECTO)compositor_vista.o \
 $(DIR_O_HERRAMIENTAS_PROYECTO)lector_txt.o \
 $(DIR_O_HERRAMIENTAS_PROYECTO)localizador_base.o \
 $(DIR_O_HERRAMIENTAS_PROYECTO)controlador_argumentos.o \
-$(DIR_O_HERRAMIENTAS_PROYECTO)string_utilidades.o
+$(DIR_O_HERRAMIENTAS_PROYECTO)string_utilidades.o \
+$(DIR_O_HERRAMIENTAS_PROYECTO)fichero_pares.o
 
 DEP_CLASES_APP=
 

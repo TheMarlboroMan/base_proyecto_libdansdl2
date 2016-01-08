@@ -28,9 +28,9 @@ int main(int argc, char ** argv)
 			using namespace App;
 			loop_aplicacion(kernel);
 		}
-		catch(Kernel_excepcion &e)
+		catch(Kernel_exception &e)
 		{
-			std::cout<<e.mensaje<<std::endl;
+			std::cout<<e.what()<<std::endl;
 		}
 	}
 	
