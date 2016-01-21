@@ -1,10 +1,12 @@
-Este proyecto depende de la libdansdl2 en
+This project depends on libdansdl2:
 	https://github.com/TheMarlboroMan/libdansdl2
-Y también de las herramientas de proyecto en
+Also depends on:
 	https://github.com/TheMarlboroMan/herramientas_proyecto
 
-Un pequeño ejemplo del framework para aplicaciones en C++ con la libdanSDL2. Intento mantenerlo al día con la última versión de ambas herramientas de forma que pueda usarlo siempre para iniciar nuevos proyectos.
+This is a small example of a C++ / SDL2 application framework. Since the application framework was updated with "kana_dication" this repository is mostly obsolete and not recommended for new applications. Still, all code and examples should work correctly.
 
-Usa dos controladores, uno de intro y otro en el que el fondo cambia de color.
+There are two controllers here: intro controller with some graphics and another controller with a color changing background.
 
-Se usan las teclas ESPACIO y ESCAPE para cambiar de controlador y volver.
+SPACE and ESCAPE are the only allowed inputs.
+
+This repository is pending a massive update that will change the framework. It's not likely to be done until "kana_dictation" is finished and I feel like it.
