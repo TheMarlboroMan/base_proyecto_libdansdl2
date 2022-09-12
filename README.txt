@@ -1,3 +1,5 @@
+# what is this?
+
 This project depends on libdansdl2:
 	https://github.com/TheMarlboroMan/libdansdl2
 Also depends on:
@@ -10,3 +12,7 @@ There are two controllers here: intro controller with some graphics and another 
 SPACE and ESCAPE are the only allowed inputs.
 
 This repository is pending a massive update that will change the framework. It's not likely to be done until "kana_dictation" is finished and I feel like it.
+
+# archiving
+
+As of September 2022 this repository is archived and no more changes will be made. It has been a few years since the "dfw" was made as a successor to this project.
